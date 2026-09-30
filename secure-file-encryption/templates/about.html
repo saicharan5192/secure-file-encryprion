@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>About Cryptography</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><div class="app-shell">
+<header class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🔐</span><span>Secure File Encryption</span></a><nav><a href="{{ url_for('index') }}">Dashboard</a><a href="{{ url_for('encrypt_page') }}">Encrypt</a><a href="{{ url_for('decrypt_page') }}">Decrypt</a><a href="{{ url_for('history_page') }}">History</a><a class="active" href="{{ url_for('about_page') }}">About</a></nav></header>
+<main class="page">
+<div class="page-title"><div><div class="eyebrow">Documentation & Viva</div><h1>About Cryptography</h1><p>Simple concepts behind the project.</p></div></div>
+<section class="panel"><span class="eyebrow">Project Architecture</span><h2>User to Protected File</h2>
+<div class="architecture">
+{% for item in ["User","Web Interface","Flask Backend","File Validation","PBKDF2 Key Derivation","AES-256-GCM","Encrypted / Recovered File","SHA-256 Verification","User Download"] %}
+<div class="arch-box">{{ item }}</div>{% if not loop.last %}<div class="arch-arrow">↓</div>{% endif %}
+{% endfor %}
+</div></section>
+<div class="split-grid">
+<section class="panel"><span class="eyebrow">Algorithms</span><h2>Algorithm Information</h2>
+<div class="algo"><b>AES</b><p>Advanced Encryption Standard. A symmetric block cipher widely used for protecting data.</p><span class="badge success">AES-256-GCM • RECOMMENDED</span></div>
+<div class="algo"><b>DES</b><p>Older symmetric block cipher with a 56-bit effective key. It is no longer recommended for modern security.</p></div>
+<div class="algo"><b>Blowfish</b><p>Symmetric block cipher designed as an alternative to older algorithms.</p></div>
+<div class="algo"><b>RC4</b><p>Historically used stream cipher that is considered insecure for modern secure applications.</p></div>
+</section>
+<section class="panel"><span class="eyebrow">Key Management</span><h2>Password to Encryption Key</h2>
+<div class="key-flow"><b>User Password</b><span>↓</span><b>PBKDF2-HMAC-SHA256</b><span>↓</span><b>Derived AES-256 Key</b><span>↓</span><b>AES-256-GCM</b><span>↓</span><b>Encrypted File</b></div>
+<p class="muted">A random salt is stored as metadata so the same password can derive the correct key later. The derived key itself is never stored.</p>
+</section></div>
+<section class="panel viva"><span class="eyebrow">B.Tech Viva Concepts</span><h2>Quick Answers</h2>
+<details><summary>1. What is symmetric cryptography?</summary><p>It uses the same secret key for encryption and decryption.</p></details>
+<details><summary>2. Why is AES used?</summary><p>AES is a standardized, efficient symmetric block cipher. This project uses AES-256-GCM for confidentiality plus authentication.</p></details>
+<details><summary>3. What is a block cipher?</summary><p>A block cipher processes data in fixed-size blocks using a secret key.</p></details>
+<details><summary>4. What is a stream cipher?</summary><p>A stream cipher encrypts data as a stream of bits or bytes. RC4 is an historical example.</p></details>
+<details><summary>5. What is confidentiality?</summary><p>Confidentiality means unauthorized people should not be able to read protected information.</p></details>
+<details><summary>6. What is key management?</summary><p>Key management covers creating, deriving, protecting and using cryptographic keys safely.</p></details>
+<details><summary>7. Why is a salt used?</summary><p>A random salt makes password-derived keys different even when the same password is reused.</p></details>
+<details><summary>8. Why is an IV/nonce used?</summary><p>A nonce provides fresh encryption input. AES-GCM requires a unique nonce for each encryption with the same key.</p></details>
+<details><summary>9. What is PBKDF2?</summary><p>PBKDF2 is a password-based key derivation function that applies repeated HMAC operations to make password guessing more expensive.</p></details>
+<details><summary>10. Why is SHA-256 used?</summary><p>SHA-256 creates a fixed-size digest used here to verify that the recovered bytes match the original file.</p></details>
+<details><summary>11. What happens with an incorrect password?</summary><p>AES-GCM authentication fails, so the application rejects the encrypted data and does not create a valid recovered file.</p></details>
+<details><summary>12. Encryption vs hashing?</summary><p>Encryption is reversible with the correct key. Hashing is designed as a one-way digest and is not used to recover the original data.</p></details>
+<details><summary>13. AES vs DES?</summary><p>AES is a modern standard with 128/192/256-bit keys; DES uses a 56-bit effective key and is obsolete for modern security.</p></details>
+<details><summary>14. Why is RC4 not recommended?</summary><p>RC4 has well-known cryptographic weaknesses and should not be selected for modern secure applications.</p></details>
+<details><summary>15. What is AES-GCM?</summary><p>GCM is an authenticated encryption mode. It provides encryption plus an authentication tag that detects incorrect keys or modified ciphertext/metadata.</p></details>
+</section>
+</main><footer>Secure File Encryption System • Academic documentation</footer></div></body></html>

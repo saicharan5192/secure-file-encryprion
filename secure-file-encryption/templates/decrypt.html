@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Decrypt File</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><div class="app-shell">
+<header class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🔐</span><span>Secure File Encryption</span></a><nav><a href="{{ url_for('index') }}">Dashboard</a><a href="{{ url_for('encrypt_page') }}">Encrypt</a><a class="active" href="{{ url_for('decrypt_page') }}">Decrypt</a><a href="{{ url_for('history_page') }}">History</a><a href="{{ url_for('about_page') }}">About</a></nav></header>
+<main class="page">
+  <div class="page-title"><div><div class="eyebrow">Decryption Module</div><h1>Recover a File</h1><p>Restore your original file using the correct password.</p></div><div class="security-pill">● AUTHENTICATED</div></div>
+  <div class="form-layout">
+    <section class="panel">
+      <form id="decryptForm">
+        <label class="dropzone" id="decryptDropzone"><input id="decryptFile" name="file" type="file" accept=".enc" hidden><div class="upload-icon">↓</div><h3>Drop your .enc file here</h3><p>or click to browse</p><small>Encrypted files only</small></label>
+        <div id="decryptFileInfo" class="file-info hidden"></div>
+        <div class="field"><label for="decPassword">Password / Key</label><input id="decPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter the encryption password" required></div>
+        <button class="btn primary full" type="submit" id="decryptBtn">Decrypt File</button>
+      </form>
+      <div id="decryptResult"></div>
+    </section>
+    <aside class="panel security-panel">
+      <span class="eyebrow">Verification</span><h2>Two layers of protection</h2>
+      <ul class="check-list"><li>AES-GCM authentication checks the password and encrypted data.</li><li>SHA-256 is calculated for the recovered file.</li><li>The stored original SHA-256 is compared with the recovered hash.</li><li>A wrong password never produces a valid recovered file.</li></ul>
+      <div class="warning-box"><b>Wrong password?</b><br>Decryption fails with an authentication error. The actual key is never exposed.</div>
+    </aside>
+  </div>
+</main><footer>Recovered files are saved temporarily for download.</footer>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script></div></body></html>

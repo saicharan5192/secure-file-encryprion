@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Encryption History</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><div class="app-shell">
+<header class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🔐</span><span>Secure File Encryption</span></a><nav><a href="{{ url_for('index') }}">Dashboard</a><a href="{{ url_for('encrypt_page') }}">Encrypt</a><a href="{{ url_for('decrypt_page') }}">Decrypt</a><a class="active" href="{{ url_for('history_page') }}">History</a><a href="{{ url_for('about_page') }}">About</a></nav></header>
+<main class="page">
+<div class="page-title"><div><div class="eyebrow">Activity</div><h1>Encryption History</h1><p>Recent operations are recorded without passwords or encryption keys.</p></div></div>
+<section class="panel table-wrap">
+<table><thead><tr><th>File Name</th><th>Algorithm</th><th>Operation</th><th>Date / Time</th><th>Status</th></tr></thead><tbody>
+{% for item in history %}
+<tr><td>{{ item.file_name }}</td><td><span class="mono">{{ item.algorithm }}</span></td><td>{{ item.operation }}</td><td>{{ item.date_time }}</td><td><span class="badge {{ 'success' if item.status == 'SUCCESS' else 'danger' }}">{{ item.status }}</span></td></tr>
+{% else %}<tr><td colspan="5" class="empty">No encryption or decryption activity yet.</td></tr>{% endfor %}
+</tbody></table></section>
+</main><footer>Passwords and derived keys are never written to history.</footer></div></body></html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Secure File Encryption System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🔐</span><span>Secure File Encryption</span></a>
+    <nav>
+      <a class="active" href="{{ url_for('index') }}">Dashboard</a>
+      <a href="{{ url_for('encrypt_page') }}">Encrypt</a>
+      <a href="{{ url_for('decrypt_page') }}">Decrypt</a>
+      <a href="{{ url_for('history_page') }}">History</a>
+      <a href="{{ url_for('about_page') }}">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">B.Tech • Cryptography & Network Security</div>
+        <h1>Secure Your Files<br><span>With Symmetric Cryptography</span></h1>
+        <p>This system protects confidential files using symmetric-key cryptography. Files are encrypted with a secret password and can only be recovered using the correct password.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="{{ url_for('encrypt_page') }}">Encrypt File →</a>
+          <a class="btn secondary" href="{{ url_for('decrypt_page') }}">Decrypt File</a>
+        </div>
+      </div>
+      <div class="hero-shield">
+        <div class="shield">⌬</div>
+        <div class="orbit o1"></div><div class="orbit o2"></div>
+      </div>
+    </section>
+
+    <section class="stat-grid">
+      <div class="feature-card"><div class="icon">AES</div><h3>AES-256-GCM</h3><p>Recommended authenticated encryption.</p><span class="badge success">RECOMMENDED</span></div>
+      <div class="feature-card"><div class="icon">KEY</div><h3>Secure Key Management</h3><p>PBKDF2 derives a key without storing your password.</p></div>
+      <div class="feature-card"><div class="icon">✓</div><h3>File Integrity</h3><p>SHA-256 verifies the recovered file.</p></div>
+      <div class="feature-card"><div class="icon">!</div><h3>Incorrect Key Detection</h3><p>AES-GCM authentication rejects wrong passwords.</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><span class="eyebrow">How it works</span><h2>Encryption Workflow</h2></div></div>
+      <div class="workflow">
+        <div class="step"><b>01</b><span>Select File</span></div><i>↓</i>
+        <div class="step"><b>02</b><span>Enter Password</span></div><i>↓</i>
+        <div class="step"><b>03</b><span>Random Salt + Nonce</span></div><i>↓</i>
+        <div class="step"><b>04</b><span>PBKDF2</span></div><i>↓</i>
+        <div class="step"><b>05</b><span>AES-256-GCM</span></div><i>↓</i>
+        <div class="step"><b>06</b><span>Download .enc</span></div>
+      </div>
+    </section>
+
+    <section class="split-grid">
+      <div class="panel">
+        <div class="section-heading"><div><span class="eyebrow">Supported</span><h2>File Protection</h2></div></div>
+        <div class="chips"><span>.txt</span><span>.pdf</span><span>.jpg</span><span>.png</span><span>.docx</span><span>.xlsx</span><span>.zip</span></div>
+        <p class="muted">Files are read as binary data, so the system is not limited to text documents.</p>
+      </div>
+      <div class="panel">
+        <div class="section-heading"><div><span class="eyebrow">Security</span><h2>Protected by Design</h2></div></div>
+        <ul class="check-list"><li>Random salt for every encryption</li><li>Random 96-bit AES-GCM nonce</li><li>Authentication tag detects tampering</li><li>No password or key is logged</li></ul>
+      </div>
+    </section>
+  </main>
+  <footer>Secure File Encryption System • Academic B.Tech CNS Project</footer>
+</div>
+</body>
+</html>

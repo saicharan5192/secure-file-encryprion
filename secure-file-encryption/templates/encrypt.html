@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Encrypt File</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><div class="app-shell">
+<header class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">🔐</span><span>Secure File Encryption</span></a><nav><a href="{{ url_for('index') }}">Dashboard</a><a class="active" href="{{ url_for('encrypt_page') }}">Encrypt</a><a href="{{ url_for('decrypt_page') }}">Decrypt</a><a href="{{ url_for('history_page') }}">History</a><a href="{{ url_for('about_page') }}">About</a></nav></header>
+<main class="page">
+  <div class="page-title"><div><div class="eyebrow">Encryption Module</div><h1>Encrypt a File</h1><p>Protect a file with AES-256-GCM and a password.</p></div><div class="security-pill">● AES-256-GCM</div></div>
+  <div class="form-layout">
+    <section class="panel">
+      <form id="encryptForm">
+        <label class="dropzone" id="encryptDropzone"><input id="encryptFile" name="file" type="file" hidden><div class="upload-icon">↑</div><h3>Drop your file here</h3><p>or click to browse</p><small>Maximum 50 MB</small></label>
+        <div id="encryptFileInfo" class="file-info hidden"></div>
+        <div class="field"><label>Encryption Algorithm</label><select disabled><option>AES-256-GCM — Recommended</option></select></div>
+        <div class="field"><label for="encPassword">Password / Key</label><input id="encPassword" name="password" type="password" autocomplete="new-password" placeholder="Enter a strong password" required></div>
+        <div class="field"><label for="encConfirm">Confirm Password / Key</label><input id="encConfirm" name="confirm_password" type="password" autocomplete="new-password" placeholder="Re-enter password" required></div>
+        <button class="btn primary full" type="submit" id="encryptBtn">Encrypt File</button>
+      </form>
+      <div id="encryptResult"></div>
+    </section>
+    <aside class="panel security-panel">
+      <span class="eyebrow">Security information</span><h2>What happens?</h2>
+      <ul class="check-list"><li>The original file is not modified.</li><li>A random salt and nonce are generated.</li><li>PBKDF2-HMAC-SHA256 derives the AES-256 key.</li><li>AES-GCM provides confidentiality and authentication.</li><li>The password is never stored in the encrypted file.</li></ul>
+      <div class="mini-flow">Password → PBKDF2 → AES-256-GCM → Encrypted .enc</div>
+    </aside>
+  </div>
+</main><footer>Use the same password later to decrypt the .enc file.</footer>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script></div></body></html>
